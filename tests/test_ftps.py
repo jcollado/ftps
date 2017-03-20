@@ -6,7 +6,10 @@
 import pytest
 
 from mock import patch
-from six import BytesIO
+from six import (
+    BytesIO,
+)
+from six.moves import range
 
 from ftps import FTPS
 
@@ -58,12 +61,12 @@ class TestList(object):
         def perform():
             """Mock function to write directory listing to output buffer."""
             client.output_buffer.write(
-                'drwxr-xr-x 1 ftp ftp              0 Jan 00 00:00 d1\n'
-                'drwxr-xr-x 1 ftp ftp              0 Jan 00 00:00 d2\n'
-                'drwxr-xr-x 1 ftp ftp              0 Jan 00 00:00 d3\n'
-                '-rw-r--r-- 1 ftp ftp              0 Jan 00 00:00 f1.txt\n'
-                '-rw-r--r-- 1 ftp ftp              0 Jan 00 00:00 f2.txt\n'
-                '-rw-r--r-- 1 ftp ftp              0 Jan 00 00:00 f3.txt\n'
+                b'drwxr-xr-x 1 ftp ftp              0 Jan 00 00:00 d1\n'
+                b'drwxr-xr-x 1 ftp ftp              0 Jan 00 00:00 d2\n'
+                b'drwxr-xr-x 1 ftp ftp              0 Jan 00 00:00 d3\n'
+                b'-rw-r--r-- 1 ftp ftp              0 Jan 00 00:00 f1.txt\n'
+                b'-rw-r--r-- 1 ftp ftp              0 Jan 00 00:00 f2.txt\n'
+                b'-rw-r--r-- 1 ftp ftp              0 Jan 00 00:00 f3.txt\n'
             )
 
         client.perform.side_effect = perform
@@ -95,7 +98,7 @@ def test_download(pycurl):
 
     def perform():
         """Mock function to write downloaded file to output buffer."""
-        client.output_buffer.write(u'<output>')
+        client.output_buffer.write(b'<output>')
 
     client.perform.side_effect = perform
 
@@ -106,7 +109,7 @@ def test_download(pycurl):
         open_().__enter__.return_value = output_buffer
         ftps.download('f1.txt', 'f1.txt')
 
-    assert output_buffer.getvalue() == u'<output>'
+    assert output_buffer.getvalue() == b'<output>'
 
 
 def test_upload(pycurl):
@@ -128,12 +131,12 @@ def test_upload(pycurl):
 
     ftps = FTPS('ftps://<user>:<password>@host')
 
-    input_buffer = BytesIO('<input>')
+    input_buffer = BytesIO(b'<input>')
     with patch('ftps.ftps.open') as open_, patch('ftps.ftps.os'):
         open_().__enter__.return_value = input_buffer
         ftps.upload('f1.txt', 'f1.txt')
 
-    assert input_buffer.read() == ''
+    assert input_buffer.read() == b''
 
 
 def test_perform_retries(pycurl, logger):
@@ -146,6 +149,6 @@ def test_perform_retries(pycurl, logger):
     ftps = FTPS('ftps://<user>:<password>@host')
     ftps.perform()
 
-    for retries in xrange(ftps.max_retries):
+    for retries in range(ftps.max_retries):
         logger.debug.assert_any_call('Retrying (%d)...', retries)
     logger.error.assert_called_once_with('Failed to perform operation')
