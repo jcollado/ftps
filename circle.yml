@@ -2,6 +2,14 @@ machine:
     post:
         - pyenv global 2.7.12 3.5.2
 
+dependencies:
+    override:
+        - pip install tox
+        - tox --notest
+    cache_directories:
+        - ~/.cache/pip
+        - .tox
+
 test:
     override:
         - ? |
