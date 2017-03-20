@@ -63,7 +63,7 @@ Quick start
 
     import ftps
 
-    client = ftps.FTPS(ftps.FTPS('ftp://<user>:<passwd>@<server>'))
+    client = ftps.FTPS('ftp://<user>:<passwd>@<server>')
     client.list()
     client.download(<remote_filename>, <local_filename>)
     client.upload(<local_filename>, <remote_filename>)
