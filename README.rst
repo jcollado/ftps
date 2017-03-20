@@ -5,9 +5,15 @@ ftps
 
 .. image:: https://img.shields.io/pypi/v/ftps.svg
         :target: https://pypi.python.org/pypi/ftps
+        :alt: PyPI version
 
 .. image:: https://img.shields.io/travis/jcollado/ftps.svg
         :target: https://travis-ci.org/jcollado/ftps
+        :alt: Continuous Integration
+
+.. image:: https://coveralls.io/repos/github/jcollado/ftps/badge.svg?branch=master
+        :target: https://coveralls.io/github/jcollado/ftps?branch=master
+        :alt: Coverage
 
 .. image:: https://readthedocs.org/projects/ftps/badge/?version=latest
         :target: https://ftps.readthedocs.io/en/latest/?badge=latest
