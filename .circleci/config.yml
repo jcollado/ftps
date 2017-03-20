@@ -1,0 +1,11 @@
+version: 2
+jobs:
+    build:
+        working_directory: ~/ftps
+        docker:
+            - image: jcollado/ftps-ci:0.1
+        steps:
+            - checkout
+            - run: tox -e py27
+            - run: tox -e py35
+            - run: tox -e flake8
