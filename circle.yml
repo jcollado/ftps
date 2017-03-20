@@ -4,6 +4,17 @@ machine:
 
 test:
     override:
-        - tox -e py27
-        - tox -e py35
-        - tox -e flake8
+        - ? |
+            case $CIRCLE_NODE_INDEX in
+            0)
+                tox -e py27
+                ;;
+            1)
+                tox -e py35
+                ;;
+            2)
+                tox -e flake8
+                ;;
+            esac
+          :
+            parallel: true
