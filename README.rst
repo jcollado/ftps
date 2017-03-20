@@ -18,6 +18,10 @@ ftps
     :target: https://coveralls.io/github/jcollado/ftps?branch=master
     :alt: Coverage
 
+.. image:: https://landscape.io/github/jcollado/ftps/master/landscape.svg?style=flat
+   :target: https://landscape.io/github/jcollado/ftps/master
+   :alt: Code Health
+
 .. image:: https://readthedocs.org/projects/ftps/badge/?version=latest
     :target: https://ftps.readthedocs.io/en/latest/?badge=latest
     :alt: Documentation Status
