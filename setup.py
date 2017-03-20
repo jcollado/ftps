@@ -11,10 +11,12 @@ with open('HISTORY.rst') as history_file:
 
 requirements = [
     'pycurl',
+    'six',
 ]
 
 test_requirements = [
-    # TODO: put package test requirements here
+    'mock',
+    'pytest',
 ]
 
 setup(
