@@ -33,16 +33,48 @@ ftps
 
 ftps client based on pycurl
 
+Motivation
+----------
+
+If you use the python standard library to connect to an ftps server, you might
+have to face some bugs as described `here <https://bugs.python.org/issue19500>`_
+and `there <https://bugs.python.org/issue25437>`_.
+
+An alternative is to give a try to pycurl_ which doesn't have those problems.
+However, its interface is not very python and sometimes is not very pleasant to
+work with it.
+
+The goal of this small library is to provide a wrapper around pycurl_ that can
+be used easily in a pythonic way.
+
+
 Features
 --------
 
-* TODO
+* List remote path
+* Download remote file
+* Upload local file
+
+
+Quick start
+-----------
+
+::
+
+    import ftps
+
+    client = ftps.FTPS(ftps.FTPS('ftp://<user>:<passwd>@<server>'))
+    client.list()
+    client.download(<remote_filename>, <local_filename>)
+    client.upload(<local_filename>, <remote_filename>)
+
 
 Credits
 ---------
 
 This package was created with Cookiecutter_ and the `audreyr/cookiecutter-pypackage`_ project template.
 
+.. _pycurl: http://pycurl.io/
 .. _Cookiecutter: https://github.com/audreyr/cookiecutter
 .. _`audreyr/cookiecutter-pypackage`: https://github.com/audreyr/cookiecutter-pypackage
 
