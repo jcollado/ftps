@@ -4,8 +4,19 @@ jobs:
         working_directory: ~/ftps
         docker:
             - image: jcollado/ftps-ci:0.1
+        parallelism: 3
         steps:
             - checkout
-            - run: tox -e py27
-            - run: tox -e py35
-            - run: tox -e flake8
+            - run: |
+                set -e
+                case $CIRCLE_NODE_INDEX in
+                0)
+                    tox -e py27
+                    ;;
+                1)
+                    tox -e py35
+                    ;;
+                2)
+                    tox -e flake8
+                    ;;
+                esac
