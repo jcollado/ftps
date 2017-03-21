@@ -1,0 +1,28 @@
+version: 2
+jobs:
+    build:
+        working_directory: ~/ftps
+        docker:
+            - image: jcollado/ftps-ci:0.1
+        parallelism: 3
+        steps:
+            - checkout
+            - restore_cache:
+                key: ftps-{{ .Branch }}-{{ .Environment.CIRCLE_NODE_INDEX }}
+            - run: |
+                set -e
+                case $CIRCLE_NODE_INDEX in
+                0)
+                    tox -e py27
+                    ;;
+                1)
+                    tox -e py35
+                    ;;
+                2)
+                    tox -e flake8
+                    ;;
+                esac
+            - save_cache:
+                key: ftps-{{ .Branch }}-{{ .Environment.CIRCLE_NODE_INDEX }}-{{ checksum "requirements/common.txt" }}-{{ checksum "requirements/test.txt" }}
+                paths:
+                    - ~/ftps/.tox
