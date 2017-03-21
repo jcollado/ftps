@@ -7,6 +7,8 @@ jobs:
         parallelism: 3
         steps:
             - checkout
+            - restore_cache:
+                key: ftps-{{ .Branch }}-{{ .Environment.CIRCLE_NODE_INDEX }}
             - run: |
                 set -e
                 case $CIRCLE_NODE_INDEX in
@@ -20,3 +22,7 @@ jobs:
                     tox -e flake8
                     ;;
                 esac
+            - save_cache:
+                key: ftps-{{ .Branch }}-{{ .Environment.CIRCLE_NODE_INDEX }}-{{ checksum "requirements/common.txt" }}-{{ checksum "requirements/test.txt" }}
+                paths:
+                    - ~/ftps/.tox
