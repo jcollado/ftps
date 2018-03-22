@@ -5,7 +5,7 @@ coverage==4.5.1
 cryptography==2.2.1
 flake8==3.5.0
 mock==2.0.0
-pip==9.0.2
+pip==9.0.3
 tox==2.9.1
 watchdog==0.8.3
 wheel==0.30.0
