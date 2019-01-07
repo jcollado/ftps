@@ -1,5 +1,5 @@
 -r common.txt
 coveralls==1.5.1
 mock==2.0.0
-pytest==4.0.2
+pytest==4.1.0
 pytest-cov==2.6.0
