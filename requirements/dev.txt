@@ -2,7 +2,7 @@
 PyYAML==4.1
 bumpversion==0.5.3
 coverage==4.5.2
-cryptography==2.5
+cryptography==2.6.1
 flake8==3.7.7
 mock==2.0.0
 pip==19.0.3
